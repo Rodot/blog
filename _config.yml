@@ -39,6 +39,7 @@ minima:
 
 plugins:
   - jekyll-feed
+  - jekyll_picture_tag
 
 # Exclude from processing.
 # The following items will not be processed, by default.
