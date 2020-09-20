@@ -1,0 +1,13 @@
+presets:
+  default:
+    markup: auto
+    formats: [original]
+    widths: [200, 400, 600, 800, 1000]
+    fallback_width: 600
+    fallback_format: original
+    noscript: false
+    link_source: true
+    quality: 75
+    data_sizes: true
+    gravity: center
+    dimension_attributes: false
