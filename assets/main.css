@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight { mar
 main { display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */ }
 
 /** Images */
-img { width: 100%; min-height: 300px; vertical-align: middle; background-color: #424242; border-radius: 5px; }
+img { width: 100%; height: auto; vertical-align: middle; background-color: #424242; border-radius: 5px; }
 
 /** Figures */
 figure > img { display: block; }
