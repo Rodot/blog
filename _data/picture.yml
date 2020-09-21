@@ -11,3 +11,5 @@ presets:
     data_sizes: true
     gravity: center
     dimension_attributes: true
+    attributes:
+      img: 'loading="lazy"'
