@@ -140,8 +140,20 @@ document.addEventListener("DOMContentLoaded", function() {
     elements.forEach(element => {
         element.addEventListener("click", function(event) {
             event.preventDefault();
-            document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="img" style="background: url(\''+this.getAttribute('href')+'\') center center / contain no-repeat;" title="'+this.getAttribute('title')+'" ><img src="'+this.getAttribute('href')+'" alt="'+this.getAttribute('title')+'" /></div><span>'+this.getAttribute('title')+'</span>';
+            var imgurl = this.getAttribute('href')
+            // use the inner img src as a preview while loading
+            var thumburl = ""
+            var childs = this.getElementsByTagName("img")
+            if(childs.length > 0){
+                thumburl = childs[0].currentSrc
+            } else {
+                thumburl = imgurl
+            }
+            // load img 
+            console.log("thumburl : " + thumburl)
+            document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="img" style="background: url(\''+imgurl+'\') center center / contain no-repeat;" title="'+this.getAttribute('title')+'" ><img src="'+imgurl+'" alt="'+this.getAttribute('title')+'" /></div><span>'+this.getAttribute('title')+'</span>';
             document.getElementById('lightbox').style.display = 'block';
+            document.getElementById('lightbox').style.backgroundImage = "url('"+thumburl+"')";
 
             setGallery(this);
         });
