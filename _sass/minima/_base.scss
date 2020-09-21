@@ -55,8 +55,10 @@ main {
  * Images
  */
 img {
-  max-width: 100%;
+  width: 100%;
+  min-height:300px;
   vertical-align: middle;
+  background-color: $grey-color-light;
 }
 
 
