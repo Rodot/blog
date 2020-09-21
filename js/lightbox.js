@@ -75,6 +75,14 @@ function setGallery(el) {
     document.getElementById('prev').addEventListener("click", function() {
         gallery_elements[prevkey].click();
     });
+    
+    //preload next image when current image is loaded
+    var img = new Image();
+    img.onload = function(){
+        var preload = new Image();
+        preload.src = gallery_elements[nextkey].getAttribute('href');
+    }
+    img.src = gallery_elements[currentkey].getAttribute('href')
 }
 
 document.addEventListener("DOMContentLoaded", function() {
