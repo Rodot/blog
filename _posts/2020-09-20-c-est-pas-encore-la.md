@@ -1,8 +1,6 @@
 ---
 layout: post
 title:  "C'est pas encore là."
-date:   2020-09-20 17:36:15 +0200
-categories: photos
 ---
 
 {% picture /assets/images/sample.jpg %}
