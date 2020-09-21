@@ -10,4 +10,4 @@ presets:
     quality: 75
     data_sizes: true
     gravity: center
-    dimension_attributes: false
+    dimension_attributes: true
