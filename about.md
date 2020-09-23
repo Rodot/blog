@@ -1,9 +1,9 @@
 ---
 layout: page
-title: À propos
-permalink: /a-propos/
+title: About
+permalink: /about/
 ---
 
 ### Mon carnet de voyage de l'ordinaire.<br>Pour apprécier aujourd'hui,<br>et penser à demain.
 
-*photos - créations - ingénierie - écologie - voyages - minimalisme*
+*photography - drawing - maker - startup - ecology - travel - minimalism*
