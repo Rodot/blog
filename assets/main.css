@@ -151,6 +151,11 @@ table td { border: 1px solid #e0deda; }
 
 @media screen and (max-width: 800px) { .post-content h4 { font-size: 18px; } }
 
+/** Tags */
+.tags-list { font-size: 32px; margin-bottom: 30px; }
+
+.post-tag-current { text-decoration: underline; }
+
 /** Syntax highlighting styles */
 .highlight { background: #fff; }
 
