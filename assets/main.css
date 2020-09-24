@@ -76,7 +76,7 @@ table th { background-color: #e7e5e3; border: 1px solid #d6d4cf; border-bottom-c
 table td { border: 1px solid #e0deda; }
 
 /** Site header */
-.site-header { border-top: 5px solid #3b3933; border-bottom: 1px solid #3b3933; min-height: 55.95px; position: relative; }
+.site-header { border-top: 5px solid #3b3933; border-bottom: 1px solid #3b3933; min-height: 55.95px; position: fixed; width: 100%; background: #1a1a1a; }
 
 .site-title { font-size: 26px; font-weight: 300; line-height: 54px; letter-spacing: -1px; margin-bottom: 0; float: left; }
 
@@ -116,7 +116,7 @@ table td { border: 1px solid #e0deda; }
 @media screen and (max-width: 600px) { .footer-col { float: none; width: -webkit-calc(100% - (30px / 2)); width: calc(100% - (30px / 2)); } }
 
 /** Page content */
-.page-content { padding: 30px 0; flex: 1; }
+.page-content { padding: 90px 0 30px 0; flex: 1; }
 
 .page-heading { font-size: 32px; }
 
@@ -124,7 +124,7 @@ table td { border: 1px solid #e0deda; }
 
 .post-list { margin-left: 0; list-style: none; }
 
-.post-list > li { margin-bottom: 30px; }
+.post-list > li { margin-bottom: 60px; }
 
 .post-meta { font-size: 14px; color: #807a6e; }
 
