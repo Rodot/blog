@@ -1,0 +1,5 @@
+<div class="tags-list">
+    {% for tag in site.tags %}
+      <a href="{%link tags/{{ tag[0] | slugify }}.md %}" class="post-tag {% if tag[0] == page.tag %}post-tag-current{% endif %}" >#{{ tag[0] | slugify }}</a>
+    {% endfor %}
+</div>
