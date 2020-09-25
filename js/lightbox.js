@@ -6,37 +6,6 @@ function is_imagelink(url) {
     var p = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
     return (url.match(p)) ? true : false;
 }
-function is_vimeolink(url,el) {
-    var id = false;
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
-            if (xmlhttp.status == 200) {
-                var response = JSON.parse(xmlhttp.responseText);
-                id = response.video_id;
-                console.log(id);
-                el.classList.add('lightbox-vimeo');
-                el.setAttribute('data-id',id);
-
-                el.addEventListener("click", function(event) {
-                    event.preventDefault();
-                    document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="videoWrapperContainer"><div class="videoWrapper"><iframe src="https://player.vimeo.com/video/'+el.getAttribute('data-id')+'/?autoplay=1&byline=0&title=0&portrait=0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div></div>';
-                    document.getElementById('lightbox').style.display = 'block';
-
-                    setGallery(this);
-                });
-            }
-            else if (xmlhttp.status == 400) {
-                alert('There was an error 400');
-            }
-            else {
-                alert('something else other than 200 was returned');
-            }
-        }
-    };
-    xmlhttp.open("GET", 'https://vimeo.com/api/oembed.json?url='+url, true);
-    xmlhttp.send();
-}
 function setGallery(el) {
     var elements = document.body.querySelectorAll(".gallery");
     elements.forEach(element => {
@@ -60,13 +29,15 @@ function setGallery(el) {
             link_element.classList.add('gallery');
         });
     }
-    var currentkey;
     var gallery_elements = document.querySelectorAll('a.gallery');
+    var currentkey;
     Object.keys(gallery_elements).forEach(function (k) {
         if(gallery_elements[k].classList.contains('current')) currentkey = k;
     });
+    // next key
     if(currentkey==(gallery_elements.length-1)) var nextkey = 0;
     else var nextkey = parseInt(currentkey)+1;
+    //prev key
     if(currentkey==0) var prevkey = parseInt(gallery_elements.length-1);
     else var prevkey = parseInt(currentkey)-1;
     document.getElementById('next').addEventListener("click", function() {
@@ -75,7 +46,6 @@ function setGallery(el) {
     document.getElementById('prev').addEventListener("click", function() {
         gallery_elements[prevkey].click();
     });
-    
     //preload next image when current image is loaded
     var img = new Image();
     img.onload = function(){
@@ -83,6 +53,21 @@ function setGallery(el) {
         preload.src = gallery_elements[nextkey].getAttribute('href');
     }
     img.src = gallery_elements[currentkey].getAttribute('href')
+}
+
+function preload(imageArray, index) {
+    index = index || 0;
+    if (imageArray && imageArray.length > index) {
+        var img = new Image ();
+        img.onload = function() {
+            // preload next one when done with current one
+            preload(imageArray, index + 1);
+        }
+        imgurl = imageArray[index].getAttribute("srcset").split(" ")[0];
+        img.src = imgurl;
+        // set background as the low res until high res loads
+        imageArray[index].style.backgroundImage = "url('"+imgurl+"')";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -93,13 +78,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(newdiv);
 
     //add classes to links to be able to initiate lightboxes
-    var elements = document.querySelectorAll('a');
-    elements.forEach(element => {
+    document.querySelectorAll('a').forEach(element => {
         var url = element.getAttribute('href');
         if(url) {
-            if(url.indexOf('vimeo') !== -1 && !element.classList.contains('no-lightbox')) {
-                is_vimeolink(url,element);
-            }
             if(is_youtubelink(url) && !element.classList.contains('no-lightbox')) {
                 element.classList.add('lightbox-youtube');
                 element.setAttribute('data-id',is_youtubelink(url));
@@ -124,39 +105,31 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     
     //add the youtube lightbox on click
-    var elements = document.querySelectorAll('a.lightbox-youtube');
-    elements.forEach(element => {
+    document.querySelectorAll('a.lightbox-youtube').forEach(element => {
         element.addEventListener("click", function(event) {
             event.preventDefault();
             document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="videoWrapperContainer"><div class="videoWrapper"><iframe src="https://www.youtube.com/embed/'+this.getAttribute('data-id')+'?autoplay=1&showinfo=0&rel=0"></iframe></div>';
             document.getElementById('lightbox').style.display = 'block';
-
+            document.getElementById('lightbox').style.backgroundImage = '';
             setGallery(this);
         });
     });
 
     //add the image lightbox on click
-    var elements = document.querySelectorAll('a.lightbox-image');
-    elements.forEach(element => {
+    document.querySelectorAll('a.lightbox-image').forEach(element => {
         element.addEventListener("click", function(event) {
             event.preventDefault();
-            var imgurl = this.getAttribute('href')
-            // use the inner img src as a preview while loading
-            var thumburl = ""
-            var childs = this.getElementsByTagName("img")
-            if(childs.length > 0){
-                thumburl = childs[0].currentSrc
-            } else {
-                thumburl = imgurl
-            }
             // load img 
-            console.log("thumburl : " + thumburl)
+            var imgurl = this.getAttribute('href')
             document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="img" style="background: url(\''+imgurl+'\') center center / contain no-repeat;" title="'+this.getAttribute('title')+'" ><img src="'+imgurl+'" alt="'+this.getAttribute('title')+'" /></div><span>'+this.getAttribute('title')+'</span>';
             document.getElementById('lightbox').style.display = 'block';
+            // use the inner low res img as a preview while loading high res
+            thumburl = this.firstElementChild.getAttribute("srcset").split(" ")[0];
             document.getElementById('lightbox').style.backgroundImage = "url('"+thumburl+"')";
-
             setGallery(this);
         });
     });
+
+    // preload(document.querySelectorAll('img'));
 
 });
