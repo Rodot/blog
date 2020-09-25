@@ -63,10 +63,8 @@ function preload(imageArray, index) {
             // preload next one when done with current one
             preload(imageArray, index + 1);
         }
-        imgurl = imageArray[index].getAttribute("srcset").split(" ")[0];
+        imgurl = imageArray[index].getElementsByTagName("source")[0].getAttribute("srcset").split(" ")[0];
         img.src = imgurl;
-        // set background as the low res until high res loads
-        imageArray[index].style.backgroundImage = "url('"+imgurl+"')";
     }
 }
 
@@ -108,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('a.lightbox-youtube').forEach(element => {
         element.addEventListener("click", function(event) {
             event.preventDefault();
-            document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="videoWrapperContainer"><div class="videoWrapper"><iframe src="https://www.youtube.com/embed/'+this.getAttribute('data-id')+'?autoplay=1&showinfo=0&rel=0"></iframe></div>';
+            document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="videoWrapperContainer"><div class="videoWrapper"><iframe src="https://www.youtube-nocookie.com/embed/'+this.getAttribute('data-id')+'?autoplay=1&cc_load_policy=1&rel=0&color=white&loop=1&modestbranding=1"></iframe></div>';
             document.getElementById('lightbox').style.display = 'block';
             document.getElementById('lightbox').style.backgroundImage = '';
             setGallery(this);
@@ -122,14 +120,16 @@ document.addEventListener("DOMContentLoaded", function() {
             // load img 
             var imgurl = this.getAttribute('href')
             document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="img" style="background: url(\''+imgurl+'\') center center / contain no-repeat;" title="'+this.getAttribute('title')+'" ><img src="'+imgurl+'" alt="'+this.getAttribute('title')+'" /></div><span>'+this.getAttribute('title')+'</span>';
-            document.getElementById('lightbox').style.display = 'block';
             // use the inner low res img as a preview while loading high res
-            thumburl = this.firstElementChild.getAttribute("srcset").split(" ")[0];
-            document.getElementById('lightbox').style.backgroundImage = "url('"+thumburl+"')";
+            thumburl = this.getElementsByTagName("source")[0].getAttribute("srcset").split(" ")[0];
+            if(thumburl){
+                document.getElementById('lightbox').style.backgroundImage = "url('"+thumburl+"')";
+            }
+            document.getElementById('lightbox').style.display = 'block';
             setGallery(this);
         });
     });
 
-    // preload(document.querySelectorAll('img'));
+    preload(document.querySelectorAll('picture'));
 
 });
