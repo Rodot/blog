@@ -1,10 +1,10 @@
 presets:
   default:
     markup: auto
-    formats: [webp, jpg]
-    widths: [400, 740]
+    formats: [webp]
+    widths: [740]
     fallback_width: 740
-    fallback_format: jpg
+    fallback_format: webp
     noscript: false
     link_source: true
     quality: 75
