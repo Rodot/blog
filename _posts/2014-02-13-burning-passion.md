@@ -3,7 +3,7 @@ layout: post
 excerpt_separator: <!--more-->
 
 title: "Burning passion"
-tags: photo
+tags: maker
 ---
 
 {% picture /assets/images/2014-02-13.jpg %}

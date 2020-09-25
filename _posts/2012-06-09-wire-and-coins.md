@@ -3,7 +3,7 @@ layout: post
 excerpt_separator: <!--more-->
 
 title: "Wire and coins"
-tags: photo maker
+tags: maker
 ---
 
 {% picture /assets/images/2012-06-09-4.jpg %}

@@ -3,7 +3,7 @@ layout: post
 excerpt_separator: <!--more-->
 
 title: "Squirrels"
-tags: photo
+tags: travel
 ---
 
 {% picture /assets/images/2011-08-28.jpg %}

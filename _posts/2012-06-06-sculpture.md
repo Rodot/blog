@@ -3,7 +3,7 @@ layout: post
 excerpt_separator: <!--more-->
 
 title: "Wax sculpture and lead molding"
-tags: photo maker
+tags: maker
 ---
 
 {% picture /assets/images/2012-06-06.jpg %}

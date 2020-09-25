@@ -3,7 +3,7 @@ layout: post
 excerpt_separator: <!--more-->
 
 title: "Car lights"
-tags: photo
+tags: travel
 ---
 
 {% picture /assets/images/2013-02-21-2.jpg %}

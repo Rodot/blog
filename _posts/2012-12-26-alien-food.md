@@ -3,7 +3,7 @@ layout: post
 excerpt_separator: <!--more-->
 
 title: "Alien food"
-tags: photo
+tags: maker
 ---
 
 {% picture /assets/images/2012-12-26.jpg %}
