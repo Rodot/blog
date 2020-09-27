@@ -278,3 +278,16 @@
   color: $text-color;
   // text-decoration:underline;
 }
+
+/**
+ * Banner
+ */
+.banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: $background-color;
+  border-top: 1px solid $grey-color-dark;
+  padding-bottom:3px;
+}

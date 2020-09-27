@@ -3,19 +3,13 @@ layout: page
 title: About
 permalink: /about/
 ---
+**[Newsletter]({{ site.subscribe_url }}) > Subscribe to support me :)**  
+1 email per month max, unsubscribe anytime
 
-> *Mon carnet de voyage de l'ordinaire.<br>Pour apprécier aujourd'hui,<br>et penser à demain.*
+**[#maker]({% link tags/maker.md %}) > Stuff I made. All kind of stuff.**  
+Startup, engineering, art...
 
-I don't know where this blog is headed, it will likely evolve with me. That's what you can find here at the moment.
+**[#travel]({% link tags/travel.md %}) > Stuff I find pretty or interesting.**  
+Nature, ecology, landscapes...
 
-## [#maker]({% link tags/maker.md %})
-
-All about making... stuff. Various stuff.
-
-*startup - art - engineering - experimentations*
-
-## [#travel]({% link tags/travel.md %})
-
-Staying open to the outer world... from next door, to the moon.
-
-*nature - ecology - sport - landscapes - architecture*
+🍪 No tracking here. Enjoy your freedom.
