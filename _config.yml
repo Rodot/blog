@@ -41,7 +41,6 @@ sass:
 
 plugins:
   - jekyll-sitemap
-  - jekyll-feed
   - jekyll_picture_tag
   - jekyll-seo-tag
 
