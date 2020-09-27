@@ -272,7 +272,9 @@
  * Tags
  */
 .tags-list{
-  margin-bottom: $spacing-unit * 1.5;
+  margin-bottom: $spacing-unit * 1;
+  // border-bottom: 1px solid $grey-color-dark;
+  text-align:   center;
 }
 #post-tag-current{
   color: $text-color;
