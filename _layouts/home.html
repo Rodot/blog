@@ -6,7 +6,7 @@ layout: default
   
   {{ content }}
   
-  {% include tags-list.html %}
+  <h2>{% include tags-list.html %}</h2>
 
   {% if page.tag %}
     {% assign posts = site.tags[page.tag] %}
