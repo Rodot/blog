@@ -5,8 +5,10 @@ layout: default
 <div class="home">
   
   {{ content }}
-  
-  <h2>{% include tags-list.html %}</h2>
+
+  {%- if page.title -%}
+    <h1 class="post-title">{{ page.title }}</h1>
+    {%- endif -%}
 
   {% if page.tag %}
     {% assign posts = site.tags[page.tag] %}

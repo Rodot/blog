@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: about
 permalink: /about/
 ---
 ## [📰 Newsletter]({{ site.subscribe_url }})  
