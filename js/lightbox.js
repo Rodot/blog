@@ -133,3 +133,37 @@ document.addEventListener("DOMContentLoaded", function() {
     preload(document.querySelectorAll('picture'));
 
 });
+
+
+document.addEventListener("keydown", function (event) {
+    if (event.defaultPrevented) {
+        return; // Do nothing if the event was already processed
+    }
+  
+    switch (event.key) {
+        case "Down": // IE/Edge specific value
+        case "ArrowDown":
+        case "Right": // IE/Edge specific value
+        case "ArrowRight":
+            let next = document.getElementById('next');
+            if(next) next.click();
+            break;
+        case "Up": // IE/Edge specific value
+        case "ArrowUp":
+        case "Left": // IE/Edge specific value
+        case "ArrowLeft":
+            let prev = document.getElementById('prev');
+            if (prev) prev.click();
+            break;
+        case "Enter":
+        case "Esc": // IE/Edge specific value
+        case "Escape":
+            document.getElementById('lightbox').style.display = 'none';
+            break;
+        default:
+            return; // Quit when this doesn't handle the key event.
+    }
+  
+    // Cancel the default action to avoid it being handled twice
+    event.preventDefault();
+  });
